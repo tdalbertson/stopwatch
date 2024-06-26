@@ -41,3 +41,35 @@ h1 {
         -1px 1px 0 black,
         1px 1px 0 black;
 }
+
+.buttons {
+    display: flex;
+    gap: 10%;
+}
+
+button {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    font-size: 1.5rem;
+    border: 2px solid antiquewhite;
+    cursor: pointer;
+}
+
+.start {
+    background-color: #238032;
+    color: #4CD964;
+    box-shadow: 0 0 0 3px #238032;
+}
+
+.stop {
+    background-color: #FF3B30;
+    color: #eeebea;
+    box-shadow: 0 0 0 3px #FF3B30;
+}
+
+.reset {
+    background-color: #C7C7CC;
+    color: black;
+    box-shadow: 0 0 0 3px #C7C7CC;
+}
