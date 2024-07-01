@@ -1,28 +1,44 @@
 let counting = false;
-const startButton = document.querySelector('.start');
-const stopButton = document.querySelector('.stop');
-const resetButton = document.querySelector('.reset');
+const startButton = document.querySelector(".start");
+const stopButton = document.querySelector(".stop");
+const resetButton = document.querySelector(".reset");
+const oneHundredth = document.querySelector("#one-hundredth");
 
-startButton.addEventListener('click', () => {
-    counting = true;
-    
-    startButton.classList.add('disabled');
-    stopButton.classList.remove('disabled');
+const countingEvent = new CustomEvent("counting", {
+    detail: {
+        counting: true,
+    },
 });
 
-stopButton.addEventListener('click', (event) => {
+startButton.addEventListener("click", () => {
+    startButton.classList.add("disabled");
+    stopButton.classList.remove("disabled");
+
+    document.dispatchEvent(countingEvent);
+});
+
+stopButton.addEventListener("click", (event) => {
     event.stopPropagation;
+    
+    startButton.disabled = false;
+    startButton.classList.remove("disabled");
+    stopButton.classList.add("disabled");
 
-    counting = false;
-
-    startButton.classList.remove('disabled');
-    stopButton.classList.add('disabled');
+    // To stop the counting of time
+    clearInterval(countingInterval);
 });
 
-while(counting) {
+document.addEventListener("counting", () => {
     startButton.disabled = true;
 
-    /*
-        Time counting here
-    */
+    countingInterval = setInterval(startCounting, 10);
+});
+
+function startCounting() {
+    console.log("In setInterval");
+
+    oneHundredth.innerText++;
+    if (oneHundredth.innerText < 10) {
+        oneHundredth.innerText = `0${oneHundredth.innerText}`;
+    }
 }
