@@ -10,6 +10,7 @@ let second = 0;
 // Time Events
 const countingEvent = new Event("counting");
 const countSecondEvent = new Event("countSecond");
+const countMinuteEvent = new Event("countMinute");
 
 // Button Event Listeners
 startButton.addEventListener("click", () => {
@@ -39,24 +40,23 @@ document.addEventListener("counting", () => {
 
 document.addEventListener("countSecond", () => {
     const secondValue = document.querySelector("#second");
-
+    second++;
+    
     if(second == 60) {
         second = 0;
     }
-
     checkTimeLessThanTen(second, secondValue);
-    second++;
 });
 
 // Counting
 function startCounting() {
     const oneHundredthText = document.querySelector("#one-hundredth");
-
+    
     if(oneHundredthSecond == 100) {
-        oneHundredthSecond = 0;
+        console.log('Count second');
         document.dispatchEvent(countSecondEvent);
+        oneHundredthSecond = 0;
     }
-
     checkTimeLessThanTen(oneHundredthSecond, oneHundredthText);
     oneHundredthSecond++;
 }
