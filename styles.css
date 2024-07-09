@@ -26,15 +26,24 @@ h1 {
     gap: 1rem;
 }
 
+.time-values {
+    display: flex;
+    gap: 1rem;
+    max-height: 6rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
 .time {
     font-size: 5.3rem;
 }
 
-.time > span {
+.time + span {
+    align-self: flex-end;
+    color: white;
     font-size: 2.5rem;
     position: relative;
-    right: 1rem;
-    color: white;
+    top: 10px;
     text-shadow:
         -1px -1px 0 black,
         1px -1px 0 black,
