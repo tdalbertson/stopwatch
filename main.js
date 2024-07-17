@@ -3,7 +3,6 @@ const startButton = document.querySelector(".start");
 const stopButton = document.querySelector(".stop");
 const resetButton = document.querySelector(".reset");
 
-// Time Values
 let oneHundredthSecond = 0;
 let second = 0;
 let minute = 0;
@@ -17,23 +16,15 @@ const countHourEvent = new Event("countHour");
 
 // Button Event Listeners
 startButton.addEventListener("click", () => {
-    startButton.classList.add("disabled");
-    resetButton.classList.add("disabled");
-    stopButton.classList.remove("disabled");
-
     document.dispatchEvent(countingEvent);
 });
 
 stopButton.addEventListener("click", (event) => {
     event.stopPropagation;
     
-    stopButton.disabled = false;
+    stopButton.disabled = true;
     resetButton.disabled = false;
     startButton.disabled = false;
-
-    resetButton.classList.remove("disabled");
-    startButton.classList.remove("disabled");
-    stopButton.classList.add("disabled");
 
     // To stop the counting of time
     clearInterval(countingInterval);
@@ -49,7 +40,6 @@ resetButton.addEventListener("click", (event) => {
     hour = 0;
     resetTimeText('time');
 
-    resetButton.classList.add("disabled");
     resetButton.disabled = true;
     startButton.disabled = false;
 })
@@ -57,6 +47,7 @@ resetButton.addEventListener("click", (event) => {
 // Counting event listeners
 document.addEventListener("counting", () => {
     startButton.disabled = true;
+    stopButton.disabled = false;
     resetButton.disabled = true;
 
     countingInterval = setInterval(startCounting, 10);
@@ -124,3 +115,29 @@ function resetTimeText(className) {
         element.innerText = '00';
     })
 }
+
+// For abstracting within event listeners
+
+
+// Time Values
+// const Clock = {
+//     oneHundredthSecond: 0,
+//     second: 0,
+//     minute: 0,
+//     hour: 0
+// }
+
+// document.addEventListener("countMinute", () => {
+//     someFunction('#minute', Clock.minute, countMinuteEvent);
+// });
+
+// function someFunction(element, timeValue, dispatchedEvent) {
+//     const el = document.querySelector(`${element}`);
+//     timeValue++;
+
+//     if(timeValue == 60 && element != "#hour") {
+//         document.dispatchEvent(dispatchedEvent);
+//         timeValue = 0;
+//     }
+//     checkTimeLessThanTen(timeValue, el);
+// } 
