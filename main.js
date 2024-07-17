@@ -29,6 +29,7 @@ stopButton.addEventListener("click", (event) => {
     
     stopButton.disabled = false;
     resetButton.disabled = false;
+    startButton.disabled = false;
 
     resetButton.classList.remove("disabled");
     startButton.classList.remove("disabled");
